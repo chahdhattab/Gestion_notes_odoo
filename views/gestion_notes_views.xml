@@ -1,0 +1,143 @@
+<? xml version="1.0" ?>
+<odoo>
+<!-- vue tree liste des étudiants-->
+<record id="view_etudiant_tree" model="ir.ui.view">
+    <field name="name">gestion.etudiant.tree</field>
+    <field name="model">gestion.etudiant</field>
+    <field name="arch" type="xml">
+        <tree string="Étudiants">
+            <field name="name"/>
+            <field name="num_apogee"/>
+            <field name="email"/>
+            <field name="filiere_id"/>
+        </tree>
+    </field>
+</record>
+<!--Vue form (Formulaire détaillé de l'étudiant)-->
+<record id="view_etudiant_form" model="ir.ui.view">
+    <field name="name">gestion.etudiant.form</field>
+    <field name="model">gestion.etudiant</field>
+    <field name="arch" type="xml">
+        <form string="Étudiant">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="num_apogee"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="date_naissance"/>
+                    <field name="adresse"/>
+                    <field name="filiere_id"/>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes_ids">
+                            <tree>
+                                <field name="module_id"/>
+                                <field name="note"/>
+                                <field name="date_examen"/>
+                                <field name="observation"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Présences">
+                        <field name="presences_ids">
+                            <tree>
+                                <field name="module_id"/>
+                                <field name="date_examen"/>
+                                <field name="statut"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<!--Vue kanban (Vue Kanban des étudiants)-->
+<record id="view_etudiant_kanban" model="ir.ui.view">
+    <field name="name">gestion.etudiant.kanban</field>
+    <field name="model">gestion.etudiant</field>
+    <field name="arch" type="xml">
+        <kanban string="Étudiants">
+            <field name="name"/>
+            <field name="filiere_id"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_record_title">
+                            <strong><field name="name"/></strong>
+                        </div>
+                        <div>
+                            <span>Filière: <field name="filiere_id"/></span>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+<!--Vue tree (Liste des enseignants)-->
+<record id="view_enseignant_tree" model="ir.ui.view">
+    <field name="name">gestion.enseignant.tree</field>
+    <field name="model">gestion.enseignant</field>
+    <field name="arch" type="xml">
+        <tree string="Enseignants">
+            <field name="name"/>
+            <field name="specialite"/>
+            <field name="email"/>
+        </tree>
+    </field>
+</record>
+<!--Vue form (Formulaire détaillé de l'enseignant)-->
+<record id="view_enseignant_form" model="ir.ui.view">
+    <field name="name">gestion.enseignant.form</field>
+    <field name="model">gestion.enseignant</field>
+    <field name="arch" type="xml">
+        <form string="Enseignant">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="specialite"/>
+                </group>
+                <notebook>
+                    <page string="Modules Enseignés">
+                        <field name="module_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="filiere_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<!--Vue kanban (Vue Kanban des enseignants)-->
+<record id="view_enseignant_kanban" model="ir.ui.view">
+    <field name="name">gestion.enseignant.kanban</field>
+    <field name="model">gestion.enseignant</field>
+    <field name="arch" type="xml">
+        <kanban string="Enseignants">
+            <field name="name"/>
+            <field name="specialite"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_record_title">
+                            <strong><field name="name"/></strong>
+                        </div>
+                        <div>
+                            <span>Spécialité: <field name="specialite"/></span>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+</odoo>
