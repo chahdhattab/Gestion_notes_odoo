@@ -140,4 +140,177 @@
         </kanban>
     </field>
 </record>
+<!--Vue tree (Liste des modules)-->
+<record id="view_module_tree" model="ir.ui.view">
+    <field name="name">gestion.module.tree</field>
+    <field name="model">gestion.module</field>
+    <field name="arch" type="xml">
+        <tree string="Modules">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="coefficient"/>
+            <field name="enseignant_id"/>
+        </tree>
+    </field>
+</record>
+<!--Vue form (Formulaire détaillé du module)-->
+<record id="view_module_form" model="ir.ui.view">
+    <field name="name">gestion.module.form</field>
+    <field name="model">gestion.module</field>
+    <field name="arch" type="xml">
+        <form string="Module">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="coefficient"/>
+                    <field name="enseignant_id"/>
+                    <field name="filiere_id"/>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="note_ids">
+                            <tree>
+                                <field name="etudiant_id"/>
+                                <field name="note"/>
+                                <field name="date_examen"/>
+                                <field name="observation"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Présences">
+                        <field name="presence_ids">
+                            <tree>
+                                <field name="etudiant_id"/>
+                                <field name="date_examen"/>
+                                <field name="statut"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<!--Vue kanban (Vue Kanban des modules)-->
+<record id="view_module_kanban" model="ir.ui.view">
+    <field name="name">gestion.module.kanban</field>
+    <field name="model">gestion.module</field>
+    <field name="arch" type="xml">
+        <kanban string="Modules">
+            <field name="name"/>
+            <field name="coefficient"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_record_title">
+                            <strong><field name="name"/></strong>
+                        </div>
+                        <div>
+                            <span>Coefficient: <field name="coefficient"/></span>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+<!--Vue tree (Liste des filières)-->
+<record id="view_filiere_tree" model="ir.ui.view">
+    <field name="name">gestion.filiere.tree</field>
+    <field name="model">gestion.filiere</field>
+    <field name="arch" type="xml">
+        <tree string="Filières">
+            <field name="name"/>
+            <field name="niveau"/>
+        </tree>
+    </field>
+</record>
+<!--Vue form (Formulaire détaillé de la filière)-->
+<record id="view_filiere_form" model="ir.ui.view">
+    <field name="name">gestion.filiere.form</field>
+    <field name="model">gestion.filiere</field>
+    <field name="arch" type="xml">
+        <form string="Filière">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="niveau"/>
+                </group>
+                <notebook>
+                    <page string="Étudiants">
+                        <field name="etudiant_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="num_apogee"/>
+                                <field name="email"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Modules">
+                        <field name="module_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="coefficient"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<!--Vue kanban (Vue Kanban des filières)-->
+<record id="view_filiere_kanban" model="ir.ui.view">
+    <field name="name">gestion.filiere.kanban</field>
+    <field name="model">gestion.filiere</field>
+    <field name="arch" type="xml">
+        <kanban string="Filières">
+            <field name="name"/>
+            <field name="niveau"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_record_title">
+                            <strong><field name="name"/></strong>
+                        </div>
+                        <div>
+                            <span>Niveau: <field name="niveau"/></span>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+<!--Vue tree (Liste des présences)-->
+<record id="view_presence_tree" model="ir.ui.view">
+    <field name="name">gestion.presence.tree</field>
+    <field name="model">gestion.presence</field>
+    <field name="arch" type="xml">
+        <tree string="Présences">
+            <field name="etudiant_id"/>
+            <field name="module_id"/>
+            <field name="date_examen"/>
+            <field name="statut"/>
+        </tree>
+    </field>
+</record>
+<!--Vue tree (Liste des notes)-->
+<record id="view_note_tree" model="ir.ui.view">
+    <field name="name">gestion.note.tree</field>
+    <field name="model">gestion.note</field>
+    <field name="arch" type="xml">
+        <tree string="Notes">
+            <field name="etudiant_id"/>
+            <field name="module_id"/>
+            <field name="note"/>
+            <field name="date_examen"/>
+            <field name="observation"/>
+        </tree>
+    </field>
+</record>
 </odoo>
