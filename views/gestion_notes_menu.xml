@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Main Menu: Étudiants -->
+    <menuitem id="menu_etudiants" name="Étudiants" sequence="10"/>
+
+    <!-- Action pour ouvrir List of Étudiants -->
+    <record id="action_etudiants" model="ir.actions.act_window">
+        <field name="name">Liste des Étudiants</field>
+        <field name="res_model">gestion.etudiant</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer un nouvel étudiant
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Étudiants -->
+    <menuitem id="menu_etudiants_list" 
+              name="Liste des Étudiants" 
+              parent="menu_etudiants" 
+              action="action_etudiants" 
+              sequence="10"/>
+
+    <!-- Main Menu: Modules -->
+    <menuitem id="menu_modules" name="Modules" sequence="20"/>
+
+    <!-- Submenu: Semestre 1 -->
+    <menuitem id="menu_semestre_1" name="Semestre 1" parent="menu_modules" sequence="10"/>
+    <!-- Action for Module 1 -->
+    <record id="action_module_1" model="ir.actions.act_window">
+        <field name="name">Module 1</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 1')]</field>
+    </record>
+    <!-- Menu Item for Module 1 -->
+    <menuitem id="menu_module_1" 
+              name="Module 1" 
+              parent="menu_semestre_1" 
+              action="action_module_1" 
+              sequence="10"/>
+
+    <!-- Action for Module 2 -->
+    <record id="action_module_2" model="ir.actions.act_window">
+        <field name="name">Module 2</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 2')]</field>
+    </record>
+    <!-- Menu Item for Module 2 -->
+    <menuitem id="menu_module_2" 
+              name="Module 2" 
+              parent="menu_semestre_1" 
+              action="action_module_2" 
+              sequence="20"/>
+
+    <!-- Submenu: Semestre 2 -->
+    <menuitem id="menu_semestre_2" name="Semestre 2" parent="menu_modules" sequence="20"/>
+    <!-- Action for Module 3 -->
+    <record id="action_module_3" model="ir.actions.act_window">
+        <field name="name">Module 3</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 3')]</field>
+    </record>
+    <!-- Menu Item for Module 3 -->
+    <menuitem id="menu_module_3" 
+              name="Module 3" 
+              parent="menu_semestre_2" 
+              action="action_module_3" 
+              sequence="10"/>
+
+    <!-- Action for Module 4 -->
+    <record id="action_module_4" model="ir.actions.act_window">
+        <field name="name">Module 4</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 4')]</field>
+    </record>
+    <!-- Menu Item for Module 4 -->
+    <menuitem id="menu_module_4" 
+              name="Module 4" 
+              parent="menu_semestre_2" 
+              action="action_module_4" 
+              sequence="20"/>
+
+    <!-- Submenu: Semestre 3 -->
+    <menuitem id="menu_semestre_3" name="Semestre 3" parent="menu_modules" sequence="30"/>
+    <!-- Action for Module 5 -->
+    <record id="action_module_5" model="ir.actions.act_window">
+        <field name="name">Module 5</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 5')]</field>
+    </record>
+    <!-- Menu Item for Module 5 -->
+    <menuitem id="menu_module_5" 
+              name="Module 5" 
+              parent="menu_semestre_3" 
+              action="action_module_5" 
+              sequence="10"/>
+
+    <!-- Submenu: Semestre 4 -->
+    <menuitem id="menu_semestre_4" name="Semestre 4" parent="menu_modules" sequence="40"/>
+    <!-- Action for Module 6 -->
+    <record id="action_module_6" model="ir.actions.act_window">
+        <field name="name">Module 6</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Module 6')]</field>
+    </record>
+    <!-- Menu Item for Module 6 -->
+    <menuitem id="menu_module_6" 
+              name="Module 6" 
+              parent="menu_semestre_4" 
+              action="action_module_6" 
+              sequence="10"/>
+</odoo>
