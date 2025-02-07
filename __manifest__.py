@@ -1,6 +1,6 @@
 {
     'name': "gestion_notes",
-    'version': '17.0.0.1',
+    'version': '0.1',
     'author': "chahd Leila Sanae Chaymae",
     'category': 'Gestion des Notes',
     'description': "Description de mon module",
