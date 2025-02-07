@@ -32,6 +32,7 @@ class Module(models.Model):
     code = fields.Char(string='Code', required=True, unique=True)
     description = fields.Text(string='Description')
     coefficient = fields.Integer(string='Coefficient')
+    semestre = fields.Selection([('S1', 'Semestre 1'), ('S2', 'Semestre 2')], string='Semestre', required=True)
     enseignant_id = fields.Many2one('gestion.enseignant', string='Enseignant Responsable')
     filiere_id = fields.Many2one('gestion.filiere', string='Filière')
     note_ids = fields.One2many('gestion.note', 'module_id', string='Notes')
@@ -58,12 +59,27 @@ class Presence(models.Model):
 
 class Note(models.Model):
     _name = 'gestion.note'
-    _description = 'Note de l^Étudiant'
+    _description = 'Note de l\'Étudiant'
 
     etudiant_id = fields.Many2one('gestion.etudiant', string='Étudiant', required=True)
     module_id = fields.Many2one('gestion.module', string='Module', required=True)
-    note = fields.Float(string='Note', required=True)
-    date_examen = fields.Date(string='Date de l^Examen')
-    observation = fields.Selection([('V', 'Validé'), ('R', 'Rattrapage')], string='Observation')
+    note = fields.Float(string='Note')
+    date_examen = fields.Date(string='Date de l\'Examen')
+    observation = fields.Text(string='Observation')
     presence_id = fields.Many2one('gestion.presence', string='Présence')
 
+    etat = fields.Selection([
+        ('V', 'Validé'),
+        ('RATT', 'Rattrapage'),
+        ('ABS', 'Absent')
+    ], string='État', compute='_compute_etat', store=True)
+
+    @api.depends('note', 'presence_id')
+    def _compute_etat(self):
+        for record in self:
+            if record.presence_id and record.presence_id.statut == 'absent':
+                record.etat = 'ABS'
+            elif record.note is not None:
+                record.etat = 'V' if record.note >= 12 else 'RATT'
+            else:
+                record.etat = False
