@@ -16,3 +16,4 @@
 
 "access_gestion_note_user","Access Gestion Note User","model_gestion_note","gestion_group_user",1,0,0,0
 "access_gestion_note_manager","Access Gestion Note Manager","model_gestion_note","gestion_group_manager",1,1,1,1
+

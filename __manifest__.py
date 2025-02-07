@@ -1,6 +1,6 @@
 {
     'name': "gestion_notes",
-    'version': '1.0',
+    'version': '17.0.0.1',
     'author': "chahd Leila Sanae Chaymae",
     'category': 'Gestion des Notes',
     'description': "Description de mon module",
@@ -11,6 +11,7 @@
         'views/gestion_notes_menu.xml',
         'views/gestion_notes_views.xml',
     ],
-    'installable': True,
+    'demo' : [],
     'application': True,
+    'installable': True,
 }
