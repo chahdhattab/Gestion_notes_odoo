@@ -4,6 +4,7 @@
 <record id="view_etudiant_tree" model="ir.ui.view">
     <field name="name">gestion.etudiant.tree</field>
     <field name="model">gestion.etudiant</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Étudiants">
             <field name="name"/>
@@ -17,6 +18,7 @@
 <record id="view_etudiant_form" model="ir.ui.view">
     <field name="name">gestion.etudiant.form</field>
     <field name="model">gestion.etudiant</field>
+    <field name="type">form</field>
     <field name="arch" type="xml">
         <form string="Étudiant">
             <sheet>
@@ -58,6 +60,7 @@
 <record id="view_etudiant_kanban" model="ir.ui.view">
     <field name="name">gestion.etudiant.kanban</field>
     <field name="model">gestion.etudiant</field>
+    <field name="type">kanban</field>
     <field name="arch" type="xml">
         <kanban string="Étudiants">
             <field name="name"/>
@@ -81,6 +84,7 @@
 <record id="view_enseignant_tree" model="ir.ui.view">
     <field name="name">gestion.enseignant.tree</field>
     <field name="model">gestion.enseignant</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Enseignants">
             <field name="name"/>
@@ -93,6 +97,7 @@
 <record id="view_enseignant_form" model="ir.ui.view">
     <field name="name">gestion.enseignant.form</field>
     <field name="model">gestion.enseignant</field>
+    <field name="type">form</field>
     <field name="arch" type="xml">
         <form string="Enseignant">
             <sheet>
@@ -121,6 +126,7 @@
 <record id="view_enseignant_kanban" model="ir.ui.view">
     <field name="name">gestion.enseignant.kanban</field>
     <field name="model">gestion.enseignant</field>
+    <field name="type">kanban</field>
     <field name="arch" type="xml">
         <kanban string="Enseignants">
             <field name="name"/>
@@ -144,6 +150,7 @@
 <record id="view_module_tree" model="ir.ui.view">
     <field name="name">gestion.module.tree</field>
     <field name="model">gestion.module</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Modules">
             <field name="name"/>
@@ -157,6 +164,7 @@
 <record id="view_module_form" model="ir.ui.view">
     <field name="name">gestion.module.form</field>
     <field name="model">gestion.module</field>
+    <field name="type">form</field>
     <field name="arch" type="xml">
         <form string="Module">
             <sheet>
@@ -197,6 +205,7 @@
 <record id="view_module_kanban" model="ir.ui.view">
     <field name="name">gestion.module.kanban</field>
     <field name="model">gestion.module</field>
+    <field name="type">kanban</field>
     <field name="arch" type="xml">
         <kanban string="Modules">
             <field name="name"/>
@@ -220,6 +229,7 @@
 <record id="view_filiere_tree" model="ir.ui.view">
     <field name="name">gestion.filiere.tree</field>
     <field name="model">gestion.filiere</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Filières">
             <field name="name"/>
@@ -231,6 +241,7 @@
 <record id="view_filiere_form" model="ir.ui.view">
     <field name="name">gestion.filiere.form</field>
     <field name="model">gestion.filiere</field>
+    <field name="type">form</field>
     <field name="arch" type="xml">
         <form string="Filière">
             <sheet>
@@ -267,6 +278,7 @@
 <record id="view_filiere_kanban" model="ir.ui.view">
     <field name="name">gestion.filiere.kanban</field>
     <field name="model">gestion.filiere</field>
+    <field name="type">kanban</field>
     <field name="arch" type="xml">
         <kanban string="Filières">
             <field name="name"/>
@@ -290,6 +302,7 @@
 <record id="view_presence_tree" model="ir.ui.view">
     <field name="name">gestion.presence.tree</field>
     <field name="model">gestion.presence</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Présences">
             <field name="etudiant_id"/>
@@ -303,6 +316,7 @@
 <record id="view_note_tree" model="ir.ui.view">
     <field name="name">gestion.note.tree</field>
     <field name="model">gestion.note</field>
+    <field name="type">tree</field>
     <field name="arch" type="xml">
         <tree string="Notes">
             <field name="etudiant_id"/>
