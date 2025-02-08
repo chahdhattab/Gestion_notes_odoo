@@ -5,14 +5,34 @@ class Etudiant(models.Model):
     _description = 'Étudiant'
 
     name = fields.Char(string='Nom', required=True)
-    num_apogee = fields.Char(string='Numéro Apogée', required=True, unique=True)
+    num_apogee = fields.Char(string='Numéro Apogée', required=True)
     email = fields.Char(string='Email')
     phone = fields.Char(string='Téléphone')
     date_naissance = fields.Date(string='Date de Naissance')
     adresse = fields.Text(string='Adresse')
-    filiere_id = fields.Many2one('gestion.filiere', string='Filière')
+    filiere_id = fields.Many2one('gestion.filiere', string="Filière")
     notes_ids = fields.One2many('gestion.note', 'etudiant_id', string='Notes')
     presences_ids = fields.One2many('gestion.presence', 'etudiant_id', string='Présences')
+    moyenne = fields.Float(string="Moyenne", compute='_compute_moyenne', store=True)
+
+    @api.depends('note', 'module_id', 'etudiant_id')
+    def _compute_moyenne(self):
+        for record in self:
+           
+            notes = self.env['gestion.note'].search([
+                ('etudiant_id', '=', record.etudiant_id.id),
+                ('module_id', '=', record.module_id.id)
+            ])
+
+            total_notes = sum(note.note for note in notes)
+            count_notes = len(notes)
+            record.moyenne = total_notes / count_notes if count_notes > 0 else 0.0
+
+    
+
+
+
+
 
 class Enseignant(models.Model):
     _name = 'gestion.enseignant'
@@ -35,6 +55,17 @@ class Module(models.Model):
     filiere_id = fields.Many2one('gestion.filiere', string='Filière')
     note_ids = fields.One2many('gestion.note', 'module_id', string='Notes')
     presence_ids = fields.One2many('gestion.presence', 'module_id', string='Présences')
+    etudiant_id = fields.Many2one('gestion.etudiant', string="Étudiants")
+    num_apogee = fields.Char(related='etudiant_id.num_apogee', string="Numéro Apogée", store=True)
+
+    semestre = fields.Selection([
+        ('S1', 'Semestre 1'),
+        ('S2', 'Semestre 2'),
+        ('S3', 'Semestre 3'),
+        ('S4', 'Semestre 4'),
+        ('S5', 'Semestre 5'),
+        ('S6', 'Semestre 6'),
+    ], string='Semestre', required=True)
 
 class Filiere(models.Model):
     _name = 'gestion.filiere'
@@ -61,23 +92,71 @@ class Note(models.Model):
 
     etudiant_id = fields.Many2one('gestion.etudiant', string='Étudiant', required=True)
     module_id = fields.Many2one('gestion.module', string='Module', required=True)
-    note = fields.Float(string='Note')
     date_examen = fields.Date(string='Date de l\'Examen')
-    observation = fields.Text(string='Observation')
-    presence_id = fields.Many2one('gestion.presence', string='Présence')
+    num_apogee = fields.Char(related='etudiant_id.num_apogee', string="Numéro Apogée", store=True)
+
+    note = fields.Float(string="Note", required=True)
+    session = fields.Selection([
+        ('normale', 'Session Normale'),
+        ('rattrapage', 'Session Rattrapage')
+    ], string='Session', required=True)
+
 
     etat = fields.Selection([
         ('V', 'Validé'),
         ('RATT', 'Rattrapage'),
+        ('NV', 'Non Validé'),
         ('ABS', 'Absent')
     ], string='État', compute='_compute_etat', store=True)
 
-    @api.depends('note', 'presence_id')
+    presence_id = fields.Many2one('gestion.presence', string='Présence')
+
+    @api.depends('etudiant_id', 'note')
+    def _compute_moyenne(self):
+        """
+        Calcule la moyenne de l'étudiant basée sur toutes les notes
+        dans les sessions normales et de rattrapage.
+        """
+        for record in self:
+            notes = self.search([('etudiant_id', '=', record.etudiant_id.id)])  
+            total_notes = sum(note.note for note in notes)  
+            total_modules = len(notes)  
+
+            if total_modules > 0:
+                record.moyenne = total_notes / total_modules  
+            else:
+                record.moyenne = 0.0  
+
+
+    @api.depends('note', 'presence_id', 'presence_id.statut', 'session')
     def _compute_etat(self):
+        """
+        Détermine l'état de validation en fonction de la note et la session.
+        """
         for record in self:
             if record.presence_id and record.presence_id.statut == 'absent':
                 record.etat = 'ABS'
-            elif record.note is not None:
-                record.etat = 'V' if record.note >= 12 else 'RATT'
-            else:
-                record.etat = False
+            elif record.session == 'normale':
+                if record.note >= 12:
+                    record.etat = 'V'
+                else:
+                    record.etat = 'RATT'
+            elif record.session == 'rattrapage':
+                if record.note >= 12:
+                    record.etat = 'V'
+                else:
+                    record.etat = 'NV'
+class SemestreResultat(models.Model):
+    _name = 'gestion.semestre.resultat'
+    _description = 'Résultat du Semestre'
+
+    etudiant_id = fields.Many2one('gestion.etudiant', string='Étudiant', required=True)
+    filiere_id = fields.Many2one('gestion.filiere', string='Filière', required=True)
+    semestre = fields.Selection([
+        ('S1', 'Semestre 1'),
+        ('S2', 'Semestre 2'),
+        ('S3', 'Semestre 3'),
+        ('S4', 'Semestre 4'),
+        ('S5', 'Semestre 5'),
+        ('S6', 'Semestre 6'),
+    ], string='Semestre', required=True)
