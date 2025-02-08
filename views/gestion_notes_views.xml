@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <odoo>
 <!-- vue tree liste des étudiants-->
-<record id="view_etudiant_tree" model="ir.ui.view">
-    <field name="name">gestion.etudiant.tree</field>
+<record id="view_etudiant_list" model="ir.ui.view">
+    <field name="name">gestion.etudiant.list</field>
     <field name="model">gestion.etudiant</field>
     <field name="arch" type="xml">
-        <tree string="Étudiants">
+        <list string="Étudiants">
             <field name="name"/>
             <field name="num_apogee"/>
             <field name="email"/>
             <field name="filiere_id"/>
-        </tree>
+        </list>
     </field>
 </record>
 <!--Vue form (Formulaire détaillé de l'étudiant)-->
@@ -57,18 +57,18 @@
     </field>
 </record>
 
-<record id="view_module_tree" model="ir.ui.view">
-    <field name="name">gestion.module.tree</field>
+<record id="view_module_list" model="ir.ui.view">
+    <field name="name">gestion.module.list</field>
     <field name="model">gestion.module</field>
     <field name="arch" type="xml">
-        <tree string="Modules">
+        <list string="Modules">
             <field name="name"/>
             <field name="code"/>
             <field name="coefficient"/>
             <field name="semestre"/>
             <field name="enseignant_id"/>
             <field name="filiere_id"/>
-        </tree>
+        </list>
     </field>
 </record>
 <record id="view_module_form" model="ir.ui.view">
@@ -89,13 +89,13 @@
                 <notebook>
                     <page string="Notes des Étudiants">
                         <field name="note_ids">
-                            <tree>
+                            <list>
                                 <field name="etudiant_id"/>
                                 <field name="note"/>
                                 <field name="date_examen"/>
                                 <field name="observation"/>
                                 <field name="etat"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </notebook>
