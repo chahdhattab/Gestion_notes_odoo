@@ -110,6 +110,32 @@
     <menuitem id="menu_resultats_pivot_S1" name="Tableau Résultats S1 " parent="menu_semestre_1" action="action_resultats_pivot_S1" sequence="4"/>
 
 
+    <!--PIVOT DELIB S1 S2-->
+    <record id="view_gestion_note_pivot_S1_S2" model="ir.ui.view">
+        <field name="name">gestion.note.pivot</field>
+        <field name="model">gestion.note</field>
+        <field name="arch" type="xml">
+           <pivot string="Résultats des Étudiants">
+                <field name="etudiant_id" type="row"/>
+                <field name="module_id" type="col"/>
+                <field name="moyenne" readonly="1"/>
+                <field name="etat" type="measures"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_resultats_pivot_S1_S2" model="ir.actions.act_window">
+        <field name="name">Résultats 1ere Année MGSI </field>
+        <field name="res_model">gestion.note</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_gestion_note_pivot_S1_S2"/>
+        <field name="domain">[('module_id.semestre', 'in', ['S1', 'S2'])]</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_resultats_pivot_S1_S2" name="Tableau Résultats 1ere Année " parent="menu_modules" action="action_resultats_pivot_S1_S2" sequence="1"/>
+
+
     <!-- Submenu: Semestre 2 -->
     <menuitem id="menu_semestre_2" name="Semestre 2" parent="menu_modules" sequence="20"/>
     <!-- Action for Module 5 -->
