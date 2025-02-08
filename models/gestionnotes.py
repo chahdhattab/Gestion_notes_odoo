@@ -84,7 +84,7 @@ class Note(models.Model):
     session = fields.Selection([
         ('normale', 'Session Normale'),
         ('rattrapage', 'Session Rattrapage')
-    ], string='Session', required=True)
+    ], string='Session')
 
 
     etat = fields.Selection([
