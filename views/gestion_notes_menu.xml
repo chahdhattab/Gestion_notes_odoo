@@ -29,91 +29,231 @@
     <menuitem id="menu_semestre_1" name="Semestre 1" parent="menu_modules" sequence="10"/>
     <!-- Action for Module 1 -->
     <record id="action_module_1" model="ir.actions.act_window">
-        <field name="name">Module 1</field>
+        <field name="name">Systemes et Reseaux</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 1')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Systemes et Reseaux')]</field>
     </record>
     <!-- Menu Item for Module 1 -->
     <menuitem id="menu_module_1" 
-              name="Module 1" 
+              name="Systemes et Reseaux" 
               parent="menu_semestre_1" 
               action="action_module_1" 
               sequence="10"/>
 
     <!-- Action for Module 2 -->
     <record id="action_module_2" model="ir.actions.act_window">
-        <field name="name">Module 2</field>
+        <field name="name">Genie Logiciel</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 2')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Genie Logiciel')]</field>
     </record>
     <!-- Menu Item for Module 2 -->
     <menuitem id="menu_module_2" 
-              name="Module 2" 
+              name="Genie Logiciel" 
               parent="menu_semestre_1" 
               action="action_module_2" 
               sequence="20"/>
 
-    <!-- Submenu: Semestre 2 -->
-    <menuitem id="menu_semestre_2" name="Semestre 2" parent="menu_modules" sequence="20"/>
     <!-- Action for Module 3 -->
     <record id="action_module_3" model="ir.actions.act_window">
-        <field name="name">Module 3</field>
+        <field name="name">Statistiques Appliquees</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 3')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Statistiques Appliquees')]</field>
     </record>
     <!-- Menu Item for Module 3 -->
     <menuitem id="menu_module_3" 
-              name="Module 3" 
-              parent="menu_semestre_2" 
+              name="Statistiques Appliquees" 
+              parent="menu_semestre_1" 
               action="action_module_3" 
-              sequence="10"/>
-
+              sequence="30"/>
+    
     <!-- Action for Module 4 -->
     <record id="action_module_4" model="ir.actions.act_window">
-        <field name="name">Module 4</field>
+        <field name="name">Math pour Data Science</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 4')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Math pour Data Science')]</field>
     </record>
     <!-- Menu Item for Module 4 -->
     <menuitem id="menu_module_4" 
-              name="Module 4" 
-              parent="menu_semestre_2" 
+              name="Math pour Data Science" 
+              parent="menu_semestre_1" 
               action="action_module_4" 
-              sequence="20"/>
+              sequence="40"/>
 
-    <!-- Submenu: Semestre 3 -->
-    <menuitem id="menu_semestre_3" name="Semestre 3" parent="menu_modules" sequence="30"/>
+    <!-- Submenu: Semestre 2 -->
+    <menuitem id="menu_semestre_2" name="Semestre 2" parent="menu_modules" sequence="20"/>
     <!-- Action for Module 5 -->
     <record id="action_module_5" model="ir.actions.act_window">
-        <field name="name">Module 5</field>
+        <field name="name">Systemes et Reseaux Avances</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 5')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Systemes et Reseaux Avances')]</field>
     </record>
     <!-- Menu Item for Module 5 -->
     <menuitem id="menu_module_5" 
-              name="Module 5" 
-              parent="menu_semestre_3" 
+              name="Systemes et Reseaux Avances" 
+              parent="menu_semestre_2" 
               action="action_module_5" 
               sequence="10"/>
 
-    <!-- Submenu: Semestre 4 -->
-    <menuitem id="menu_semestre_4" name="Semestre 4" parent="menu_modules" sequence="40"/>
     <!-- Action for Module 6 -->
     <record id="action_module_6" model="ir.actions.act_window">
-        <field name="name">Module 6</field>
+        <field name="name">Algorithmique et Programmation</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Module 6')]</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Algorithmique et Programmation')]</field>
     </record>
     <!-- Menu Item for Module 6 -->
     <menuitem id="menu_module_6" 
-              name="Module 6" 
-              parent="menu_semestre_4" 
+              name="Algorithmique et Programmation" 
+              parent="menu_semestre_2" 
               action="action_module_6" 
+              sequence="20"/>
+
+    <!-- Action for Module 7 -->
+    <record id="action_module_7" model="ir.actions.act_window">
+        <field name="name">Design Thinking</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Design Thinking')]</field>
+    </record>
+    <!-- Menu Item for Module 7 -->
+    <menuitem id="menu_module_7" 
+              name="Design Thinking" 
+              parent="menu_semestre_2" 
+              action="action_module_7" 
+              sequence="30"/>
+
+    <!-- Action for Module 8 -->
+    <record id="action_module_8" model="ir.actions.act_window">
+        <field name="name">Developpement Web</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Developpement Web')]</field>
+    </record>
+    <!-- Menu Item for Module 8 -->
+    <menuitem id="menu_module_8" 
+              name="Developpement Web" 
+              parent="menu_semestre_2" 
+              action="action_module_8" 
+              sequence="40"/>
+
+    <!-- Submenu: Semestre 3 -->
+    <menuitem id="menu_semestre_3" name="Semestre 3" parent="menu_modules" sequence="30"/>
+    <!-- Action for Module 9 -->
+    <record id="action_module_9" model="ir.actions.act_window">
+        <field name="name">Erp</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Erp')]</field>
+    </record>
+    <!-- Menu Item for Module 9 -->
+    <menuitem id="menu_module_9" 
+              name="Erp" 
+              parent="menu_semestre_3" 
+              action="action_module_9" 
               sequence="10"/>
+
+    <!-- Action for Module 10 -->
+    <record id="action_module_10" model="ir.actions.act_window">
+        <field name="name">Management et Gouvernance SI</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Management et Gouvernance SI')]</field>
+    </record>
+    <!-- Menu Item for Module 10 -->
+    <menuitem id="menu_module_10" 
+              name="Management et Gouvernance SI" 
+              parent="menu_semestre_3" 
+              action="action_module_10" 
+              sequence="20"/>
+
+    <!-- Action for Module 11 -->
+    <record id="action_module_11" model="ir.actions.act_window">
+        <field name="name">Conception SI</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Conception SI')]</field>
+    </record>
+    <!-- Menu Item for Module 11 -->
+    <menuitem id="menu_module_11" 
+              name="Conception SI" 
+              parent="menu_semestre_3" 
+              action="action_module_11" 
+              sequence="30"/>
+
+    <!-- Action for Module 12 -->
+    <record id="action_module_12" model="ir.actions.act_window">
+        <field name="name">Management</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Management')]</field>
+    </record>
+    <!-- Menu Item for Module 12 -->
+    <menuitem id="menu_module_12" 
+              name="Management" 
+              parent="menu_semestre_3" 
+              action="action_module_12" 
+              sequence="40"/>
+
+    <!-- Submenu: Semestre 4 -->
+    <menuitem id="menu_semestre_4" name="Semestre 4" parent="menu_modules" sequence="40"/>
+    <!-- Action for Module 13 -->
+    <record id="action_module_13" model="ir.actions.act_window">
+        <field name="name">Securite SI</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Securite SI')]</field>
+    </record>
+    <!-- Menu Item for Module 13 -->
+    <menuitem id="menu_module_13" 
+              name="Securite SI" 
+              parent="menu_semestre_4" 
+              action="action_module_13" 
+              sequence="10"/>
+
+    <!-- Action for Module 14 -->
+    <record id="action_module_14" model="ir.actions.act_window">
+        <field name="name">Internet des Objets</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Internet des Objets')]</field>
+    </record>
+    <!-- Menu Item for Module 14 -->
+    <menuitem id="menu_module_14" 
+              name="Internet des Objets" 
+              parent="menu_semestre_4" 
+              action="action_module_14" 
+              sequence="20"/>
+
+    <!-- Action for Module 15 -->
+    <record id="action_module_15" model="ir.actions.act_window">
+        <field name="name">BI et Big Data</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'BI et Big Data')]</field>
+    </record>
+    <!-- Menu Item for Module 15 -->
+    <menuitem id="menu_module_15" 
+              name="BI et Big Data" 
+              parent="menu_semestre_4" 
+              action="action_module_15" 
+              sequence="30"/>
+
+    <!-- Action for Module 16 -->
+    <record id="action_module_16" model="ir.actions.act_window">
+        <field name="name">Digital Marketing</field>
+        <field name="res_model">gestion.module</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('note_ids.module_id', '=', 'Digital Marketing')]</field>
+    </record>
+    <!-- Menu Item for Module 16 -->
+    <menuitem id="menu_module_16" 
+              name="Digital Marketing" 
+              parent="menu_semestre_4" 
+              action="action_module_16" 
+              sequence="40"/>
 </odoo>
