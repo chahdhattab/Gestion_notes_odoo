@@ -31,8 +31,6 @@ class Module(models.Model):
     name = fields.Char(string='Nom du Module', required=True)
     code = fields.Char(string='Code', required=True, unique=True)
     description = fields.Text(string='Description')
-    coefficient = fields.Integer(string='Coefficient')
-    semestre = fields.Selection([('S1', 'Semestre 1'), ('S2', 'Semestre 2')], string='Semestre', required=True)
     enseignant_id = fields.Many2one('gestion.enseignant', string='Enseignant Responsable')
     filiere_id = fields.Many2one('gestion.filiere', string='Filière')
     note_ids = fields.One2many('gestion.note', 'module_id', string='Notes')

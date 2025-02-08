@@ -32,7 +32,7 @@
         <field name="name">Systemes et Reseaux</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Systemes et Reseaux')]</field>
+        <field name="domain">[('name', '=', 'Systemes et Reseaux'),('semestre', '=', 'S1')]</field>
     </record>
     <!-- Menu Item for Module 1 -->
     <menuitem id="menu_module_1" 
@@ -46,7 +46,7 @@
         <field name="name">Genie Logiciel</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Genie Logiciel')]</field>
+        <field name="domain">[('name', '=', 'Genie Logiciel'), ('semestre', '=', 'S1')]</field>
     </record>
     <!-- Menu Item for Module 2 -->
     <menuitem id="menu_module_2" 
@@ -60,7 +60,7 @@
         <field name="name">Statistiques Appliquees</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Statistiques Appliquees')]</field>
+        <field name="domain">[('name', '=', 'Statistiques Appliquees'), ('semestre', '=', 'S1')]</field>
     </record>
     <!-- Menu Item for Module 3 -->
     <menuitem id="menu_module_3" 
@@ -74,14 +74,41 @@
         <field name="name">Math pour Data Science</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Math pour Data Science')]</field>
+       <field name="domain">[('name', '=', 'Math pour Data Science'), ('semestre', '=', 'S1')]</field>
     </record>
     <!-- Menu Item for Module 4 -->
-    <menuitem id="menu_module_4" 
-              name="Math pour Data Science" 
-              parent="menu_semestre_1" 
-              action="action_module_4" 
-              sequence="40"/>
+<menuitem id="menu_module_4" 
+          name="Math pour Data Science" 
+          parent="menu_semestre_1" 
+          action="action_module_4" 
+          sequence="40"/>
+
+
+
+    <record id="view_gestion_note_pivot_S1" model="ir.ui.view">
+        <field name="name">gestion.note.pivot</field>
+        <field name="model">gestion.note</field>
+        <field name="arch" type="xml">
+           <pivot string="Résultats des Étudiants">
+                <field name="etudiant_id" type="row"/>
+                <field name="module_id" type="col"/>
+                <field name="moyenne" readonly="1"/>
+                <field name="etat" type="measures"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_resultats_pivot_S1" model="ir.actions.act_window">
+        <field name="name">Résultats S1 </field>
+        <field name="res_model">gestion.note</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_gestion_note_pivot_S1"/>
+        <field name="domain">[('module_id.semestre', '=', 'S1')]</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_resultats_pivot_S1" name="Tableau Résultats S1 " parent="menu_semestre_1" action="action_resultats_pivot_S1" sequence="4"/>
+
 
     <!-- Submenu: Semestre 2 -->
     <menuitem id="menu_semestre_2" name="Semestre 2" parent="menu_modules" sequence="20"/>
@@ -90,7 +117,7 @@
         <field name="name">Systemes et Reseaux Avances</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Systemes et Reseaux Avances')]</field>
+        <field name="domain">[('name', '=', 'Systemes et Reseaux Avances'), ('semestre', '=', 'S2')]</field>
     </record>
     <!-- Menu Item for Module 5 -->
     <menuitem id="menu_module_5" 
@@ -104,7 +131,7 @@
         <field name="name">Algorithmique et Programmation</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Algorithmique et Programmation')]</field>
+        <field name="domain">[('name', '=', 'Algorithmique et Programmation'), ('semestre', '=', 'S2')]</field>
     </record>
     <!-- Menu Item for Module 6 -->
     <menuitem id="menu_module_6" 
@@ -118,7 +145,7 @@
         <field name="name">Design Thinking</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Design Thinking')]</field>
+        <field name="domain">[('name', '=', 'Design Thinking'), ('semestre', '=', 'S2')]</field>
     </record>
     <!-- Menu Item for Module 7 -->
     <menuitem id="menu_module_7" 
@@ -132,7 +159,7 @@
         <field name="name">Developpement Web</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Developpement Web')]</field>
+        <field name="domain">[('name', '=', 'Developpement Web'), ('semestre', '=', 'S2')]</field>
     </record>
     <!-- Menu Item for Module 8 -->
     <menuitem id="menu_module_8" 
@@ -141,6 +168,38 @@
               action="action_module_8" 
               sequence="40"/>
 
+
+
+
+
+    <record id="view_gestion_note_pivot_S2" model="ir.ui.view">
+        <field name="name">gestion.note.pivot</field>
+        <field name="model">gestion.note</field>
+        <field name="arch" type="xml">
+           <pivot string="Résultats des Étudiants">
+                <field name="etudiant_id" type="row"/>
+                <field name="module_id" type="col"/>
+                <field name="moyenne" readonly="1"/>
+                <field name="etat" type="measures"/>
+            </pivot>
+        </field>
+    </record>
+
+     <!-- Action pour Résultats Session Normal Semestre 2 -->
+    <record id="action_resultats_s2" model="ir.actions.act_window">
+        <field name="name">Résultats Semestre 2</field>
+        <field name="res_model">gestion.note</field>
+        <field name="view_id" ref="view_gestion_note_pivot_S2"/>
+        <field name="view_mode">pivot</field>
+        <field name="domain">[('module_id.semestre', '=', 'S2')]</field> 
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_resultats_2" name="Resultats Session Normal S2" parent="menu_semestre_2" action="action_resultats_s2" sequence="1"/>
+
+    
+
+
     <!-- Submenu: Semestre 3 -->
     <menuitem id="menu_semestre_3" name="Semestre 3" parent="menu_modules" sequence="30"/>
     <!-- Action for Module 9 -->
@@ -148,7 +207,7 @@
         <field name="name">Erp</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Erp')]</field>
+        <field name="domain">[('name', '=', 'Erp'), ('semestre', '=', 'S3')]</field>
     </record>
     <!-- Menu Item for Module 9 -->
     <menuitem id="menu_module_9" 
@@ -162,7 +221,7 @@
         <field name="name">Management et Gouvernance SI</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Management et Gouvernance SI')]</field>
+        <field name="domain">[('name', '=', 'Management et Gouvernance SI'), ('semestre', '=', 'S3')]</field>
     </record>
     <!-- Menu Item for Module 10 -->
     <menuitem id="menu_module_10" 
@@ -176,7 +235,7 @@
         <field name="name">Conception SI</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Conception SI')]</field>
+        <field name="domain">[('name', '=', 'Conception SI'), ('semestre', '=', 'S3')]</field>
     </record>
     <!-- Menu Item for Module 11 -->
     <menuitem id="menu_module_11" 
@@ -190,7 +249,7 @@
         <field name="name">Management</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Management')]</field>
+        <field name="domain">[('name', '=', 'Management'), ('semestre', '=', 'S3')]</field>
     </record>
     <!-- Menu Item for Module 12 -->
     <menuitem id="menu_module_12" 
@@ -199,6 +258,34 @@
               action="action_module_12" 
               sequence="40"/>
 
+
+
+    <record id="view_gestion_note_pivot_S3" model="ir.ui.view">
+        <field name="name">gestion.note.pivot</field>
+        <field name="model">gestion.note</field>
+        <field name="arch" type="xml">
+           <pivot string="Résultats des Étudiants">
+                <field name="etudiant_id" type="row"/>
+                <field name="module_id" type="col"/>
+                <field name="moyenne" readonly="1"/>
+                <field name="etat" type="measures"/>
+            </pivot>
+        </field>
+    </record>
+    <!-- Action pour Résultats Session Normal Semestre 3 -->
+    <record id="action_resultats_s3" model="ir.actions.act_window">
+        <field name="name">Résultats Semestre 3</field>
+        <field name="res_model">gestion.note</field>
+        <field name="view_id" ref="view_gestion_note_pivot_S3"/>
+        <field name="view_mode">pivot</field>
+        <field name="domain">[('module_id.semestre', '=', 'S3')]</field> <!-- Filtrer pour la session normale et semestre 3 -->
+        <field name="target">current</field>
+    </record>
+    <menuitem id="menu_resultats_3" name="Resultats S3" parent="menu_semestre_3" action="action_resultats_s3" sequence="1"/>
+
+    
+   
+
     <!-- Submenu: Semestre 4 -->
     <menuitem id="menu_semestre_4" name="Semestre 4" parent="menu_modules" sequence="40"/>
     <!-- Action for Module 13 -->
@@ -206,7 +293,7 @@
         <field name="name">Securite SI</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Securite SI')]</field>
+        <field name="domain">[('name', '=', 'Securite SI'), ('semestre', '=', 'S4')]</field>
     </record>
     <!-- Menu Item for Module 13 -->
     <menuitem id="menu_module_13" 
@@ -220,7 +307,7 @@
         <field name="name">Internet des Objets</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Internet des Objets')]</field>
+        <field name="domain">[('name', '=', 'Internet des Objets'), ('semestre', '=', 'S4')]</field>
     </record>
     <!-- Menu Item for Module 14 -->
     <menuitem id="menu_module_14" 
@@ -234,7 +321,7 @@
         <field name="name">BI et Big Data</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'BI et Big Data')]</field>
+        <field name="domain">[('name', '=', 'BI et Big Data'), ('semestre', '=', 'S4')]</field>
     </record>
     <!-- Menu Item for Module 15 -->
     <menuitem id="menu_module_15" 
@@ -248,7 +335,7 @@
         <field name="name">Digital Marketing</field>
         <field name="res_model">gestion.module</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('note_ids.module_id', '=', 'Digital Marketing')]</field>
+        <field name="domain">[('name', '=', 'Digital Marketing'), ('semestre', '=', 'S4')]</field>
     </record>
     <!-- Menu Item for Module 16 -->
     <menuitem id="menu_module_16" 
