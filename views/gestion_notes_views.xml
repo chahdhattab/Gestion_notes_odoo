@@ -60,50 +60,54 @@
     </field>
 </record>
 
-<record id="view_module_list" model="ir.ui.view">
-    <field name="name">gestion.module.list</field>
-    <field name="model">gestion.module</field>
-    <field name="arch" type="xml">
-        <list string="Modules">
-            <field name="name"/>
-            <field name="code"/>
-            <field name="coefficient"/>
-            <field name="semestre"/>
-            <field name="enseignant_id"/>
-            <field name="filiere_id"/>
-        </list>
-    </field>
-</record>
 <record id="view_module_form" model="ir.ui.view">
     <field name="name">gestion.module.form</field>
     <field name="model">gestion.module</field>
     <field name="arch" type="xml">
-        <!--<form string="Module">
+        <form string="Module : [[ object.name ]]">
             <sheet>
                 <group>
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="description"/>
-                    <field name="coefficient"/>
                     <field name="semestre"/>
-                    <field name="enseignant_id"/>
                     <field name="filiere_id"/>
-                </group>-->
-                <form>
-                    <!--<page string="Notes des Étudiants">-->
-                        <field name="note_ids">
-                            <list>
-                                <field name="etudiant_id"/>
-                                <field name="note"/>
-                                <field name="date_examen"/>
-                                <field name="observation"/>
-                                <field name="etat"/>
-                            </list>
-                        </field>
-                    <!--</page>-->
-                </form>
-            <!--</sheet>-->
-        <!--</form>-->
+                    <field name="enseignant_id"/>
+                </group>
+
+                <notebook>
+                    <page string="Session normale">
+                        <group>
+                            <field name="note_ids">
+                                <list editable="bottom" domain="[('session', '=', 'normale')]">
+                                    <field name="etudiant_id" string="Nom de l'Étudiant"/>
+                                    <field name="num_apogee" string="Numéro Apogée"/>
+                                    <field name="note" string="Note"/>
+                                    <field name="etat" string="État"/>
+                                </list>
+                            </field>
+                        </group>
+                    </page>
+
+                    <page string="Session Rattrapage">
+                        <group>
+                            <field name="note_ids">
+                                <list editable="bottom" domain="[('session', '=', 'rattrapage'),('etat', '=', 'RATT')]">
+                                    <field name="etudiant_id" string="Nom de l'Étudiant"/>
+                                    <field name="num_apogee" string="Numéro Apogée"/>
+                                    <field name="note" string="Note"/>
+                                    <field name="etat"  string="État"/>
+                                </list>
+                            </field>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
     </field>
 </record>
+
+
+
+
+
 </odoo>
