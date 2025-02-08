@@ -13,21 +13,6 @@ class Etudiant(models.Model):
     filiere_id = fields.Many2one('gestion.filiere', string="Filière")
     notes_ids = fields.One2many('gestion.note', 'etudiant_id', string='Notes')
     presences_ids = fields.One2many('gestion.presence', 'etudiant_id', string='Présences')
-    moyenne = fields.Float(string="Moyenne", compute='_compute_moyenne', store=True)
-
-    @api.depends('note', 'module_id', 'etudiant_id')
-    def _compute_moyenne(self):
-        for record in self:
-           
-            notes = self.env['gestion.note'].search([
-                ('etudiant_id', '=', record.etudiant_id.id),
-                ('module_id', '=', record.module_id.id)
-            ])
-
-            total_notes = sum(note.note for note in notes)
-            count_notes = len(notes)
-            record.moyenne = total_notes / count_notes if count_notes > 0 else 0.0
-
     
 
 
@@ -109,24 +94,9 @@ class Note(models.Model):
         ('ABS', 'Absent')
     ], string='État', compute='_compute_etat', store=True)
 
+
+    moyenne = fields.Float(string="Moyenne", compute='_compute_moyenne', store=True)
     presence_id = fields.Many2one('gestion.presence', string='Présence')
-
-    @api.depends('etudiant_id', 'note')
-    def _compute_moyenne(self):
-        """
-        Calcule la moyenne de l'étudiant basée sur toutes les notes
-        dans les sessions normales et de rattrapage.
-        """
-        for record in self:
-            notes = self.search([('etudiant_id', '=', record.etudiant_id.id)])  
-            total_notes = sum(note.note for note in notes)  
-            total_modules = len(notes)  
-
-            if total_modules > 0:
-                record.moyenne = total_notes / total_modules  
-            else:
-                record.moyenne = 0.0  
-
 
     @api.depends('note', 'presence_id', 'presence_id.statut', 'session')
     def _compute_etat(self):
@@ -146,6 +116,22 @@ class Note(models.Model):
                     record.etat = 'V'
                 else:
                     record.etat = 'NV'
+
+
+
+    @api.depends('etudiant_id.notes_ids.note')
+    def _compute_moyenne(self):
+        
+        for record in self:
+            notes = record.etudiant_id.notes_ids
+            total_notes = sum(note.note for note in notes if note.note is not None)  
+            count_notes = len([note for note in notes if note.note is not None])  
+            
+            record.moyenne = total_notes / count_notes if count_notes > 0 else 0.0
+
+
+
+
 class SemestreResultat(models.Model):
     _name = 'gestion.semestre.resultat'
     _description = 'Résultat du Semestre'
