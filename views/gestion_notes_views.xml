@@ -9,6 +9,9 @@
             <field name="name"/>
             <field name="num_apogee"/>
             <field name="email"/>
+            <field name="phone"/>
+            <field name="date_naissance"/>
+            <field name="adresse"/>
             <field name="filiere_id"/>
         </list>
     </field>
@@ -75,7 +78,7 @@
     <field name="name">gestion.module.form</field>
     <field name="model">gestion.module</field>
     <field name="arch" type="xml">
-        <form string="Module">
+        <!--<form string="Module">
             <sheet>
                 <group>
                     <field name="name"/>
@@ -85,9 +88,9 @@
                     <field name="semestre"/>
                     <field name="enseignant_id"/>
                     <field name="filiere_id"/>
-                </group>
-                <notebook>
-                    <page string="Notes des Étudiants">
+                </group>-->
+                <form>
+                    <!--<page string="Notes des Étudiants">-->
                         <field name="note_ids">
                             <list>
                                 <field name="etudiant_id"/>
@@ -97,10 +100,10 @@
                                 <field name="etat"/>
                             </list>
                         </field>
-                    </page>
-                </notebook>
-            </sheet>
-        </form>
+                    <!--</page>-->
+                </form>
+            <!--</sheet>-->
+        <!--</form>-->
     </field>
 </record>
 </odoo>
