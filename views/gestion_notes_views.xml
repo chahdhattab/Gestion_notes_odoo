@@ -1,42 +1,46 @@
-<?xml version="1.0"?>
-<odoo>
-<!-- vue tree liste des étudiants-->
 <record id="view_etudiant_list" model="ir.ui.view">
     <field name="name">gestion.etudiant.list</field>
     <field name="model">gestion.etudiant</field>
     <field name="arch" type="xml">
-        <list string="Étudiants">
-            <field name="name"/>
-            <field name="num_apogee"/>
-            <field name="email"/>
-            <field name="phone"/>
-            <field name="date_naissance"/>
-            <field name="adresse"/>
-            <field name="filiere_id"/>
+        <list string=" Liste des Étudiants">
+            <field name="name" string="Nom et Prénom"/>
+            <field name="num_apogee" string="Numéro Apogée"/>
+            <field name="email" string="Adresse Email"/>
+            <field name="phone" string="Téléphone"/>
+            <field name="date_naissance" string="Date de Naissance"/>
+            <field name="adresse" string="Adresse"/>
+            <field name="filiere_id" string="Filière"/>
         </list>
     </field>
 </record>
-<!--Vue form (Formulaire détaillé de l'étudiant)-->
+
 <record id="view_etudiant_form" model="ir.ui.view">
     <field name="name">gestion.etudiant.form</field>
     <field name="model">gestion.etudiant</field>
     <field name="arch" type="xml">
-        <form string="Étudiant">
+        <form string="🎓 Fiche Étudiant">
             <sheet>
+                <h1><field name="name" placeholder="Nom et Prenom d'étudiant"/></h1>
+
                 <group>
-                    <field name="name"/>
-                    <field name="num_apogee"/>
-                    <field name="email"/>
-                    <field name="phone"/>
-                    <field name="date_naissance"/>
-                    <field name="adresse"/>
-                    <field name="filiere_id"/>
+                    <group>
+                        <field name="num_apogee" string="Numéro Apogée"/>
+                        <field name="filiere_id" string="Filière"/>
+                        <field name="date_naissance" string="Date de Naissance"/>
+                    </group>
+                    <group>
+                        <field name="email" string="Adresse Email"/>
+                        <field name="phone" string="Téléphone"/>
+                        <field name="adresse" string="Adresse"/>
+                    </group>
                 </group>
             </sheet>
         </form>
     </field>
 </record>
-<!--Vue kanban (Vue Kanban des étudiants)-->
+
+
+<!-- Vue Kanban des étudiants -->
 <record id="view_etudiant_kanban" model="ir.ui.view">
     <field name="name">gestion.etudiant.kanban</field>
     <field name="model">gestion.etudiant</field>
@@ -47,11 +51,14 @@
             <templates>
                 <t t-name="kanban-box">
                     <div class="oe_kanban_global_click">
-                        <div class="o_kanban_record_title">
+                        <div class="o_kanban_record_title" style="background-color:#4CAF50; color:white; padding:12px; border-radius:8px;">
                             <strong><field name="name"/></strong>
                         </div>
-                        <div>
-                            <span>Filière: <field name="filiere_id"/></span>
+                        <div style="padding:10px;">
+                            <p><strong>Apogée :</strong> <field name="num_apogee"/></p>
+                            <p><strong>Email :</strong> <field name="email"/></p>
+                            <p><strong>Téléphone :</strong> <field name="phone"/></p>
+                            <p><strong>Filière :</strong> <field name="filiere_id"/></p>
                         </div>
                     </div>
                 </t>
