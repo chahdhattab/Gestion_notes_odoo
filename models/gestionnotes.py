@@ -95,7 +95,9 @@ class Note(models.Model):
     ], string='État', compute='_compute_etat', store=True)
 
 
-    moyenne = fields.Float(string="Moyenne", compute='_compute_moyenne', store=True)
+    moyenne_generale = fields.Float(
+        string="Moyenne Générale", compute="_compute_moyenne_generale", store=True
+    )
     presence_id = fields.Many2one('gestion.presence', string='Présence')
 
     @api.depends('note', 'presence_id', 'presence_id.statut', 'session')
@@ -119,16 +121,13 @@ class Note(models.Model):
 
 
 
-    @api.depends('etudiant_id.notes_ids.note')
-    def _compute_moyenne(self):
-        
+    @api.depends('etudiant_id', 'note')
+    def _compute_moyenne_generale(self):
         for record in self:
-            notes = record.etudiant_id.notes_ids
-            total_notes = sum(note.note for note in notes if note.note is not None)  
-            count_notes = len([note for note in notes if note.note is not None])  
             
-            record.moyenne = total_notes / count_notes if count_notes > 0 else 0.0
-
+            notes_etudiant = self.filtered(lambda n: n.etudiant_id == record.etudiant_id).mapped('note')
+            
+            record.moyenne_generale = sum(notes_etudiant) / len(notes_etudiant) if notes_etudiant else 0.0
 
 
 
